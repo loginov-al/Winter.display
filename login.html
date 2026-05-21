@@ -4,8 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Winter.дисплей: Вход в аккаунт</title>
+    <link rel="icon" href="/static/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f6f6f6;
+            font-family: "Montserrat", sans-serif;
+        }
+
+  #preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    /* Добавьте эти две строки */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 1;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #000000; /* Цвет спиннера */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+    </style>
 </head>
 <body>
-    
+    <div id="preloader">
+    <div class="loader"></div>
+</div>
+
+
+<script src="/static/loader_js/loader.js"></script>
 </body>
 </html>
