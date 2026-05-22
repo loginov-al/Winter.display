@@ -9,7 +9,9 @@ app.permanent_session_lifetime = timedelta(days=365)
 
 
 
-
+@app.route("/")
+def login():
+    return render_template("login.html")
 
 
 
