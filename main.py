@@ -1,7 +1,7 @@
 import os
 
 import config
-from api import api_bp
+from endpoints.api import api_bp
 from datetime import timedelta
 from flask import Flask, jsonify, redirect, render_template, request, send_from_directory, session
 from werkzeug.security import check_password_hash
