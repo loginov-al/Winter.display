@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Winter.дисплей: Вход в аккаунт</title>
+    <title>Winter.дисплей: Регистрация</title>
     <link rel="icon" href="/static/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
         * {
             box-sizing: border-box;
@@ -54,7 +53,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Стили контейнера формы */
         .auth-container {
             background: #ffffff;
             padding: 40px;
@@ -79,7 +77,6 @@
             line-height: 1.5;
         }
 
-        /* Стили формы и полей ввода */
         .auth-form {
             display: flex;
             flex-direction: column;
@@ -109,7 +106,6 @@
             color: #aaaaaa;
         }
 
-        /* Стили кнопки */
         .submit-btn {
             font-family: "Montserrat", sans-serif;
             font-size: 16px;
@@ -132,7 +128,6 @@
             transform: scale(0.98);
         }
 
-        /* Исправленный селектор для текста под кнопкой */
         .auth-form p {
             font-size: 14px;
             color: #666666;
@@ -140,7 +135,6 @@
             font-weight: 500;
         }
 
-        /* Стили для ссылки регистрации */
         .reg-link {
             color: #000000;
             text-decoration: none;
@@ -154,55 +148,60 @@
     </style>
 </head>
 <body>
-
     <div id="preloader">
         <div class="loader"></div>
     </div>
 
-    <!-- Основная карточка авторизации -->
     <div class="auth-container">
-        <h1>Привет 👋</h1>
-        <h3>Давайте зайдем в ваш аккаунт или зарегистрируемся</h3>
+        <h1>Регистрация</h1>
+        <h3>Создайте аккаунт для управления фото и экранами</h3>
 
-        <form class="auth-form" method="POST" action="/login">
+        <form class="auth-form" id="register-form">
             <input type="email" name="email" class="input-field" placeholder="Введите свою почту" autocomplete="email" required>
-            <input type="password" name="password" class="input-field" placeholder="Введите свой пароль" autocomplete="current-password" required>
-            <button type="submit" class="submit-btn">Войти</button>
-            <p>Нет аккаунта? <a href="/create_account" class="reg-link">Зарегистрируйтесь</a></p>
+            <input type="password" name="password" class="input-field" placeholder="Придумайте пароль" autocomplete="new-password" minlength="6" required>
+            <input type="password" name="passwordConfirm" class="input-field" placeholder="Повторите пароль" autocomplete="new-password" minlength="6" required>
+            <button type="submit" class="submit-btn">Создать аккаунт</button>
+            <p>Уже есть аккаунт? <a href="/" class="reg-link">Войти</a></p>
         </form>
     </div>
 
     <script src="/static/loader_js/loader.js"></script>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const authForm = document.querySelector('.auth-form');
+            const form = document.getElementById('register-form');
+            if (!form) return;
 
-            if (!authForm) return;
-
-            authForm.addEventListener('submit', async (event) => {
+            form.addEventListener('submit', async (event) => {
                 event.preventDefault();
 
-                const email = authForm.querySelector('input[name="email"]').value.trim();
-                const password = authForm.querySelector('input[name="password"]').value;
+                const email = form.querySelector('input[name="email"]').value.trim();
+                const password = form.querySelector('input[name="password"]').value;
+                const passwordConfirm = form.querySelector('input[name="passwordConfirm"]').value;
+
+                if (password !== passwordConfirm) {
+                    alert('Пароли не совпадают');
+                    return;
+                }
 
                 try {
-                    const response = await fetch('/login', {
+                    const response = await fetch('/api/register', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ email, password })
+                        headers: { 'Content-Type': 'application/json' },
+                        credentials: 'same-origin',
+                        body: JSON.stringify({ email, password }),
                     });
+
+                    const data = await response.json().catch(() => ({}));
 
                     if (response.ok) {
                         window.location.href = '/home';
-                    } else {
-                        alert('Неверный логин или пароль');
+                        return;
                     }
+
+                    alert(data.error || 'Не удалось создать аккаунт');
                 } catch (error) {
-                    console.error('Ошибка сети:', error);
-                    alert('Произошла ошибка при попытке войти');
+                    console.error(error);
+                    alert('Произошла ошибка при регистрации');
                 }
             });
         });

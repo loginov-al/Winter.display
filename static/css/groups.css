@@ -1,0 +1,52 @@
+.list-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #fafafa;
+}
+
+.list-card + .list-card {
+    margin-top: 10px;
+}
+
+.list-card-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.group-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.list-card-main strong {
+    display: block;
+    font-size: 15px;
+}
+
+.list-card-main span {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 2px;
+}
+
+.group-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.color-input {
+    flex: 0 0 72px;
+    min-width: 72px;
+    padding: 8px;
+}

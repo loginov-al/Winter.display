@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Winter.дисплей: Настройки</title>
+    <link rel="icon" href="/static/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/settings.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="topbar-title">
+                    <h1 id="page-title">Настройки</h1>
+                    <p id="page-subtitle">Параметры приложения</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Отображение</h2>
+                        <p>Общие параметры для всех экранов</p>
+                    </div>
+                </div>
+
+                <div class="settings-list">
+                    <div class="setting-row">
+                        <div>
+                            <strong>Автосмена слайдов</strong>
+                            <span>Менять фото на экранах автоматически</span>
+                        </div>
+                        <div class="toggle on" data-setting="autoplay" role="switch" aria-checked="true" tabindex="0"></div>
+                    </div>
+
+                    <div class="setting-row">
+                        <div>
+                            <strong>Сжатие загрузок</strong>
+                            <span>Уменьшать размер файлов при загрузке на сервер</span>
+                        </div>
+                        <div class="toggle on" data-setting="compress" role="switch" aria-checked="true" tabindex="0"></div>
+                    </div>
+
+                    <div class="setting-row">
+                        <div>
+                            <strong>Интервал по умолчанию</strong>
+                            <span>Для новых экранов, секунд</span>
+                        </div>
+                        <input class="input-field number-field" id="default-interval" type="number" min="5" max="300" value="30">
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Данные</h2>
+                        <p>Фото: <span id="photos-count">0</span> · Экраны: <span id="screens-count">0</span> · Группы: <span id="groups-count">0</span></p>
+                    </div>
+                </div>
+
+                <div class="settings-list">
+                    <div class="setting-row">
+                        <div>
+                            <strong>Очистить все фото</strong>
+                            <span>Удалить все изображения из базы данных</span>
+                        </div>
+                        <button class="danger-btn" id="clear-photos-btn" type="button">Очистить</button>
+                    </div>
+
+                    <div class="setting-row">
+                        <div>
+                            <strong>Очистить все экраны</strong>
+                            <span>Удалить все созданные дисплеи</span>
+                        </div>
+                        <button class="danger-btn" id="clear-screens-btn" type="button">Очистить</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Основная навигация">
+        <div class="bottom-nav-inner" id="bottom-nav"></div>
+    </nav>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/app-shell.js"></script>
+    <script src="/static/js/settings.js"></script>
+</body>
+</html>

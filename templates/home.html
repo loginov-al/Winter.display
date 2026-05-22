@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Winter.дисплей: Главная</title>
+    <link rel="icon" href="/static/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/home.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="topbar-title">
+                    <h1 id="page-title">Главная</h1>
+                    <p id="page-subtitle">Ваши фотографии для экранов</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="upload-btn icon-only-mobile" id="topbar-action" type="button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>Загрузить</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="page-tabs">
+                <button class="page-tab active" type="button" data-tab="gallery">Галерея</button>
+                <button class="page-tab" type="button" data-tab="screens">Экраны</button>
+            </div>
+
+            <section class="section active" data-section="gallery">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Фотографии</h2>
+                            <p>Загружайте изображения для показа на экранах</p>
+                        </div>
+                    </div>
+
+                    <div class="dropzone" id="dropzone">
+                        <strong>Перетащите фото сюда</strong>
+                        <span>или нажмите «Загрузить» · JPG, PNG, WEBP</span>
+                    </div>
+
+                    <div class="filters" id="group-filters"></div>
+                    <div class="photo-grid" id="photo-grid"></div>
+
+                    <div class="empty-state" id="empty-photos" hidden>
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="5" width="18" height="14" rx="2"/>
+                            <circle cx="8.5" cy="10.5" r="1.5"/>
+                            <path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2.12 0L7 17"/>
+                        </svg>
+                        <h3>Пока нет фотографий</h3>
+                        <p>Добавьте первое изображение, чтобы начать</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" data-section="screens">
+                <div class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h2>Экраны</h2>
+                            <p>Создавайте, редактируйте и подключайте дисплеи</p>
+                        </div>
+                    </div>
+
+                    <div class="screen-grid" id="screens-grid"></div>
+
+                    <div class="empty-state" id="empty-screens" hidden>
+                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="3" y="5" width="18" height="12" rx="2"/>
+                            <path d="M8 21h8"/>
+                        </svg>
+                        <h3>Экранов пока нет</h3>
+                        <p>Нажмите «Новый экран», чтобы добавить первый дисплей</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Основная навигация">
+        <div class="bottom-nav-inner" id="bottom-nav"></div>
+    </nav>
+
+    <input id="file-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif" multiple>
+
+    <div class="modal-overlay" id="screen-modal">
+        <div class="modal" role="dialog" aria-labelledby="screen-modal-title">
+            <div class="modal-header">
+                <h3 id="screen-modal-title">Новый экран</h3>
+                <button class="icon-btn" id="screen-modal-close" type="button" aria-label="Закрыть">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 6l12 12M18 6 6 18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <form id="screen-form">
+                <div class="form-group">
+                    <label for="screen-name">Название</label>
+                    <input class="input-field" id="screen-name" type="text" maxlength="60" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="screen-description">Описание</label>
+                    <textarea class="textarea-field" id="screen-description"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="screen-group">Группа фото</label>
+                    <select class="select-field" id="screen-group"></select>
+                </div>
+
+                <div class="form-group">
+                    <label for="screen-interval">Смена слайда (сек)</label>
+                    <input class="input-field" id="screen-interval" type="number" min="5" max="300" value="30">
+                </div>
+
+                <div class="modal-actions">
+                    <button class="secondary-btn" id="screen-modal-cancel" type="button">Отмена</button>
+                    <button class="primary-btn" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/app-shell.js"></script>
+    <script src="/static/js/home.js"></script>
+</body>
+</html>

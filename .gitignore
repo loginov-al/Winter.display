@@ -2,3 +2,4 @@
 .venv
 .рус
 __pycache__
+static/uploads/

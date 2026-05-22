@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Winter.дисплей: Группы фоток</title>
+    <link rel="icon" href="/static/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/groups.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="topbar-title">
+                    <h1 id="page-title">Группы фоток</h1>
+                    <p id="page-subtitle">Коллекции изображений</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <button class="upload-btn icon-only-mobile" id="create-group-btn" type="button">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 5v14M5 12h14"/>
+                    </svg>
+                    <span>Новая группа</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Ваши группы</h2>
+                        <p>Создавайте коллекции и назначайте им фото на главной</p>
+                    </div>
+                </div>
+                <div id="groups-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="bottom-nav" aria-label="Основная навигация">
+        <div class="bottom-nav-inner" id="bottom-nav"></div>
+    </nav>
+
+    <div class="modal-overlay" id="group-modal">
+        <div class="modal" role="dialog" aria-labelledby="group-modal-title">
+            <div class="modal-header">
+                <h3 id="group-modal-title">Новая группа</h3>
+                <button class="icon-btn" id="group-modal-close" type="button" aria-label="Закрыть">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 6l12 12M18 6 6 18"/>
+                    </svg>
+                </button>
+            </div>
+
+            <form id="group-form">
+                <div class="form-group">
+                    <label for="group-name">Название</label>
+                    <input class="input-field" id="group-name" type="text" maxlength="40" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="group-color">Цвет</label>
+                    <input class="input-field color-input" id="group-color" type="color" value="#000000">
+                </div>
+
+                <div class="modal-actions">
+                    <button class="secondary-btn" id="group-modal-cancel" type="button">Отмена</button>
+                    <button class="primary-btn" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/app-shell.js"></script>
+    <script src="/static/js/groups.js"></script>
+</body>
+</html>
